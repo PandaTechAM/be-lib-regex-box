@@ -12,6 +12,7 @@
         <Description>PandaTech.RegexBox is a .NET library simplifying common Regex.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-regex-box</RepositoryUrl>
         <PackageReleaseNotes>Initial commit</PackageReleaseNotes>
+        <PackageId>Pandatech.RegexBox</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
