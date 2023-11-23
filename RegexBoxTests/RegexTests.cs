@@ -189,4 +189,87 @@ public class RegexTests
     {
         Assert.Equal(expectedResult, PandaValidator.IsIpAddress(value, false));
     }
+    
+    [Theory]
+    [InlineData("0000000000", true)]
+    [InlineData("0004000500", true)]
+    [InlineData("123456789", false)]
+    [InlineData("12345678ա", false)]
+    [InlineData("123s567890a", false)]
+    [InlineData("S12367890", false)]
+    [InlineData("Տ123/45647", true)]
+    [InlineData("s123/45647", false)]
+    [InlineData("Տ12345647", false)]
+    [InlineData("123/45647", false)]
+    [InlineData("Տ123/456476", false)]
+    [InlineData("S12/545647", false)]
+    [InlineData("S023A95647", true)]
+    [InlineData("Տ023A95647", false)]
+    [InlineData("231654A64", false)]
+    [InlineData("Տ0239A5647", false)]
+    [InlineData("Տ123/45647S023A95647", false)]
+    public void IsArmeniaSocialSecurityNumberTest(string value, bool expectedResult)
+    {
+        Assert.Equal(expectedResult, PandaValidator.IsArmeniaSocialSecurityNumber(value));
+    }
+    
+    [Theory]
+    [InlineData("123456789", true)]
+    [InlineData("12345678", false)]
+    [InlineData("1234567890", false)]
+    [InlineData("12345678a", false)]
+    [InlineData("123456789a", false)]
+    [InlineData("023456780", true)]
+    public void IsArmeniaIdCardTest(string value, bool expectedResult)
+    {
+        Assert.Equal(expectedResult, PandaValidator.IsArmeniaIdCard(value));
+    }
+    
+    [Theory]
+    [InlineData("AB1234567", true)]  // valid format with letters
+    [InlineData("XY9876543", true)]  // valid format with letters
+    [InlineData("123456789", true)]  // valid format just numbers
+    [InlineData("AB123456", false)]  // missing a digit with letters
+    [InlineData("A12345678", false)] // only one letter
+    [InlineData("AB12345678", false)]// extra digit with letters
+    [InlineData("12345678", false)]  // missing a digit
+    [InlineData("1234567890", false)]// extra digit
+    [InlineData("Ab1234567", false)] // lowercase letter
+    [InlineData("AB123456Z", false)] // non-numeric character at the end
+    [InlineData("A B1234567", false)]// space between characters
+    [InlineData("", false)]
+    public void IsArmeniaPassportNumberTest(string value, bool expectedResult)
+    {
+        Assert.Equal(expectedResult, PandaValidator.IsArmeniaPassportNumber(value));
+    }
+    
+    [Theory]
+    [InlineData("12345678", true)]
+    [InlineData("12354608", true)]
+    [InlineData("12345678901", false)]
+    [InlineData("02345670", true)]
+    [InlineData("5478946", false)]
+    public void IsArmeniaTaxCodeTest(string value, bool expectedResult)
+    {
+        Assert.Equal(expectedResult, PandaValidator.IsArmeniaTaxCode(value));
+    }
+    
+    [Theory]
+    [InlineData("123.456.78901", true)] // valid format
+    [InlineData("987.654.321013249", true)] // valid format
+    [InlineData("000.000.00000", true)] // valid format (border case)
+    [InlineData("123456.78901", false)] // missing dot
+    [InlineData("123.45678901", false)] // missing dot
+    [InlineData("123.456.78901212365", false)] // too many numbers after last dot
+    [InlineData("12.456.78901", false)]  // less numbers before first dot
+    [InlineData("123.45.78901", false)]  // less numbers between dots
+    [InlineData("123.456.7890", false)]  // less numbers after last dot
+    [InlineData("a23.456.78901", false)] // contains non-numeric character
+    [InlineData("123.456.7890a", false)] // contains non-numeric character at the end
+    [InlineData("290.110.1269513", true)]
+    [InlineData("", false)]               // empty string
+    public void IsArmeniaStateRegistryNumberTest(string value, bool expectedResult)
+    {
+        Assert.Equal(expectedResult, PandaValidator.IsArmeniaStateRegistryNumber(value));
+    }
 }
