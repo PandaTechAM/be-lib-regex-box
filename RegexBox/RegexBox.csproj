@@ -4,6 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageId>Pandatech.RegexBox</PackageId>
         <Version>1.1.1</Version>
         <Title>Pandatech.RegexBox</Title>
         <Authors>Pandatech</Authors>
@@ -11,8 +12,7 @@
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Description>PandaTech.RegexBox is a .NET library simplifying common Regex.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-regex-box</RepositoryUrl>
-        <PackageReleaseNotes>.net 8 update</PackageReleaseNotes>
-        <PackageId>URL regex update</PackageId>
+        <PackageReleaseNotes>URL regex update</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
