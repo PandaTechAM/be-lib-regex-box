@@ -130,7 +130,7 @@ public class RegexTests
     [Theory]
     [InlineData("https://google.com", true)]
     [InlineData("https://google.org", true)]
-    [InlineData("https://openai.com", true)]
+    [InlineData("https://openai.com/vazgen", true)]
     [InlineData("http://example.travel", false)]
     [InlineData("https://example.co.uk", true)]
     [InlineData("google.com", false)]
