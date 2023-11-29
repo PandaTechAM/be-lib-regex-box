@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexBox", "RegexBox\RegexBox.csproj", "{54353AC9-A2A0-4DB1-B019-AC0B770D524A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexBoxTests", "RegexBoxTests\RegexBoxTests.csproj", "{D11E0003-8B29-4554-8A8A-5214E9285202}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexBoxTests", "../tests/RegexBoxTests\RegexBoxTests.csproj", "{D11E0003-8B29-4554-8A8A-5214E9285202}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
