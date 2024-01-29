@@ -8,13 +8,13 @@
         <PackageIcon>pandatech.png</PackageIcon>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Copyright>MIT</Copyright>
-        <Version>1.1.4</Version>
+        <Version>1.2.3</Version>
         <PackageId>Pandatech.RegexBox</PackageId>
         <Title>Pandatech.RegexBox</Title>
         <PackageTags>Pandatech, library, regex, validation</PackageTags>
         <Description>PandaTech.RegexBox is a .NET library simplifying common Regex.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-regex-box</RepositoryUrl>
-        <PackageReleaseNotes>Structure change</PackageReleaseNotes>
+        <PackageReleaseNotes>Panda phone number addition and Ip validation removal</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>

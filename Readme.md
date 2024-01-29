@@ -1,36 +1,47 @@
 # Pandatech.RegexBox
 
-## Introduction
-Pandatech.RegexBox is a .NET library that provides a set of regular expressions for common data validation tasks. It includes regex patterns for validating email addresses, usernames, URLs, IP addresses (both IPv4 and IPv6), US Social Security Numbers, and Armenian Social Security Numbers.
+Pandatech.RegexBox is a highly performant and robust C# library designed to simplify complex regex validations for various data formats. With 100% test coverage and a focus on security through a 50ms regex execution timeout, it's an ideal solution for applications requiring reliable and efficient data validation.
 
-## Features
-* **Email Validation:** You can use the `PandaValidator.IsEmail(string email)` method to check if a given string is a valid email address.
-* **Username Validation:** The library provides the `PandaValidator.IsUsername(string userName)` method to validate usernames according to a defined pattern.
-* **URL Validation:** You can validate URLs using the `PandaValidator.IsUri(string uri, bool allowWildcards, bool allowNonSecure)` method. It supports wildcards and secure/non-secure URLs.
-* **IP Address Validation:** The library offers methods to validate both IPv4 and IPv6 addresses using `PandaValidator.IsIpAddress(string ip, bool isIpv4)`.
-* **US Social Security Number Validation:** The `PandaValidator.IsUsSocialSecurityNumber(string number)` method allows you to check if a string matches the pattern for a US Social Security Number.
-* **Armenian Social Security Number Validation:** You can validate Armenian Social Security Numbers using `PandaValidator.IsArmenianSocialSecurityNumber(string socialCardNumber)`.
 
-## How to Use
-Here's an example of how to use Pandatech.RegexBox for email validation:
+## Usage
+
+To use Pandatech.RegexBox, simply add a reference to the package in your project and call the desired static validation methods:
+
 ```csharp
 using Pandatech.RegexBox;
 
-string email = "example@email.com";
-if (PandaValidator.IsEmail(email))
-{
-    Console.WriteLine("Valid email address.");
-}
-else
-{
-    Console.WriteLine("Invalid email address.");
-}
+// URI validation
+bool isValidUri = PandaValidator.IsUri("http://example.com", allowWildcards: false, allowNonSecure: true);
+
+// US Social Security Number validation
+bool isValidSsnUs = PandaValidator.IsUsSocialSecurityNumber("123-45-6789");
+
+// Email validation
+bool isValidEmail = PandaValidator.IsEmail("user@example.com");
+
+// Username validation
+bool isValidUsername = PandaValidator.IsUsername("user123");
+
+// Armenian Social Security Number validation
+bool isValidSsnAm = PandaValidator.IsArmeniaSocialSecurityNumber("12345678912");
+
+//ArmenianIDCard validation
+bool isValidArmenianIdCard = PandaValidator.IsArmeniaIdCard("AN1234567");
+
+// Armenian Passport validation
+bool isValidArmenianPassport = PandaValidator.IsArmeniaPassport("AN1234567");
+
+// Armenian Tax code validation
+bool isValidArmenianTaxCode = PandaValidator.IsArmeniaTaxCode("12345678");
+
+// Panda Formatted Phone Number validation
+bool isValidPhoneNumber = PandaValidator.IsPandaFormattedPhoneNumber("(374)94810553");
+
+// Armenian State Registration Number validation
+bool isValidArmenianStateRegistrationNumber = PandaValidator.IsArmeniaStateRegistryNumber("123.456.78");
+
+// and many more...
 ```
-# Note
-* The library is designed for easy integration into your .NET projects.
-* The library has best performance and security practices in mind.
-* This library has 100% code coverage.
-* Will be ongoing updated and maintained.
 
 ## License
 
