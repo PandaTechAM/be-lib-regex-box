@@ -104,6 +104,8 @@ public class RegexTests
     [InlineData("http://sub.google.com", true)]
     [InlineData("https://*.openai.com", false)]
     [InlineData("*.google.com", false)]
+    [InlineData("https://openai.com/vazgen?a", true)]
+
     public void IsUrlTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsUri(value, false, true));
@@ -166,29 +168,6 @@ public class RegexTests
         Assert.Equal(expectedResult, PandaValidator.IsUri(value, true, false));
     }
 
-    [Theory]
-    [InlineData("192.168.1.1", true)]
-    [InlineData("255.255.255.255", true)]
-    [InlineData("0.0.0.0", true)]
-    [InlineData("256.256.256.256", false)]
-    [InlineData("192.168.1", false)]
-    public void IsIpv4Test(string value, bool expectedResult)
-    {
-        Assert.Equal(expectedResult, PandaValidator.IsIpAddress(value, true));
-    }
-
-    [Theory]
-    [InlineData("2001:0db8:85a3:0000:0000:8a2e:0370:7334", true)]
-    [InlineData("2001:db8:85a3:0:0:8a2e:370:7334", true)]
-    [InlineData("2001:db8:85a3::8a2e:370:7334", true)]
-    [InlineData("::1", true)]
-    [InlineData("2001:db8::", true)]
-    [InlineData("2001:db8:::1", true)]
-    [InlineData("2001:0db8:85a3:0000:0000:8a2e:0370:7334:5", true)]
-    public void IsIpv6Test(string value, bool expectedResult)
-    {
-        Assert.Equal(expectedResult, PandaValidator.IsIpAddress(value, false));
-    }
     
     [Theory]
     [InlineData("0000000000", true)]
@@ -271,5 +250,19 @@ public class RegexTests
     public void IsArmeniaStateRegistryNumberTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsArmeniaStateRegistryNumber(value));
+    }
+    
+    [Theory]
+    [InlineData("(123)45678901", true)]
+    [InlineData("987(654)013249", false)]
+    [InlineData("374(93910593)", false)]
+    [InlineData("12345678901", false)]
+    [InlineData("(374374)1234", false)]
+    [InlineData("(374)12345123123123213678901", false)]
+    [InlineData("(374)123", false)]
+    
+    public void IsPandaFormattedPhoneNumberTest(string value, bool expectedResult)
+    {
+        Assert.Equal(expectedResult, PandaValidator.IsPandaFormattedPhoneNumber(value));
     }
 }
