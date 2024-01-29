@@ -151,7 +151,7 @@ public class RegexTests
     [Theory]
     [InlineData("https://google.com", true)]
     [InlineData("https://google.org", true)]
-    [InlineData("https://openai.com", true)]
+    [InlineData("https://openai.com/vazZadqj?", true)]
     [InlineData("http://example.travel", false)]
     [InlineData("https://example.co.uk", true)]
     [InlineData("google.com", false)]
@@ -163,6 +163,7 @@ public class RegexTests
     [InlineData("http://google.com", false)]
     [InlineData("ftp://google.com", false)]
     [InlineData("https://*.google.com", true)]
+    [InlineData("https://*.pandatech.it",true)]
     public void IsSecureUrlOrSecureWildcardTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsUri(value, true, false));
