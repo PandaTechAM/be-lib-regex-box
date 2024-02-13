@@ -2,7 +2,7 @@ using RegexBox;
 
 namespace RegexBoxTests;
 
-public class RegexTests
+public class Tests
 {
     [Theory]
     [InlineData("example@example.com", true)]
@@ -104,8 +104,7 @@ public class RegexTests
     [InlineData("http://sub.google.com", true)]
     [InlineData("https://*.openai.com", false)]
     [InlineData("*.google.com", false)]
-    [InlineData("https://openai.com/vazgen?a", true)]
-
+    [InlineData("http://openai.com/vazgen?a=6456", true)]
     public void IsUrlTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsUri(value, false, true));
@@ -124,6 +123,7 @@ public class RegexTests
     [InlineData("http://sub.google.com", true)]
     [InlineData("https://*.openai.com", true)]
     [InlineData("*.google.com", false)]
+    [InlineData("https://openai.com/vazgen?a=6456", true)]
     public void IsUrlOrWildcardTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsUri(value, true, true));
@@ -143,6 +143,7 @@ public class RegexTests
     [InlineData("*.google.com", false)]
     [InlineData("http://google.com", false)]
     [InlineData("ftp://google.com", false)]
+    [InlineData("https://openai.com/vazgen?a=6456", true)]
     public void IsSecureUrlTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsUri(value, false, false));
@@ -169,7 +170,7 @@ public class RegexTests
         Assert.Equal(expectedResult, PandaValidator.IsUri(value, true, false));
     }
 
-    
+
     [Theory]
     [InlineData("0000000000", true)]
     [InlineData("0004000500", true)]
@@ -192,7 +193,7 @@ public class RegexTests
     {
         Assert.Equal(expectedResult, PandaValidator.IsArmeniaSocialSecurityNumber(value));
     }
-    
+
     [Theory]
     [InlineData("123456789", true)]
     [InlineData("12345678", false)]
@@ -204,25 +205,25 @@ public class RegexTests
     {
         Assert.Equal(expectedResult, PandaValidator.IsArmeniaIdCard(value));
     }
-    
+
     [Theory]
-    [InlineData("AB1234567", true)]  // valid format with letters
-    [InlineData("XY9876543", true)]  // valid format with letters
-    [InlineData("123456789", true)]  // valid format just numbers
-    [InlineData("AB123456", false)]  // missing a digit with letters
+    [InlineData("AB1234567", true)] // valid format with letters
+    [InlineData("XY9876543", true)] // valid format with letters
+    [InlineData("123456789", true)] // valid format just numbers
+    [InlineData("AB123456", false)] // missing a digit with letters
     [InlineData("A12345678", false)] // only one letter
-    [InlineData("AB12345678", false)]// extra digit with letters
-    [InlineData("12345678", false)]  // missing a digit
-    [InlineData("1234567890", false)]// extra digit
+    [InlineData("AB12345678", false)] // extra digit with letters
+    [InlineData("12345678", false)] // missing a digit
+    [InlineData("1234567890", false)] // extra digit
     [InlineData("Ab1234567", false)] // lowercase letter
     [InlineData("AB123456Z", false)] // non-numeric character at the end
-    [InlineData("A B1234567", false)]// space between characters
+    [InlineData("A B1234567", false)] // space between characters
     [InlineData("", false)]
     public void IsArmeniaPassportNumberTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsArmeniaPassportNumber(value));
     }
-    
+
     [Theory]
     [InlineData("12345678", true)]
     [InlineData("12354608", true)]
@@ -233,7 +234,7 @@ public class RegexTests
     {
         Assert.Equal(expectedResult, PandaValidator.IsArmeniaTaxCode(value));
     }
-    
+
     [Theory]
     [InlineData("123.456.78901", true)] // valid format
     [InlineData("987.654.321013249", true)] // valid format
@@ -241,18 +242,18 @@ public class RegexTests
     [InlineData("123456.78901", false)] // missing dot
     [InlineData("123.45678901", false)] // missing dot
     [InlineData("123.456.78901212365", false)] // too many numbers after last dot
-    [InlineData("12.456.78901", false)]  // less numbers before first dot
-    [InlineData("123.45.78901", false)]  // less numbers between dots
-    [InlineData("123.456.7890", false)]  // less numbers after last dot
+    [InlineData("12.456.78901", false)] // less numbers before first dot
+    [InlineData("123.45.78901", false)] // less numbers between dots
+    [InlineData("123.456.7890", false)] // less numbers after last dot
     [InlineData("a23.456.78901", false)] // contains non-numeric character
     [InlineData("123.456.7890a", false)] // contains non-numeric character at the end
     [InlineData("290.110.1269513", true)]
-    [InlineData("", false)]               // empty string
+    [InlineData("", false)] // empty string
     public void IsArmeniaStateRegistryNumberTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsArmeniaStateRegistryNumber(value));
     }
-    
+
     [Theory]
     [InlineData("(123)45678901", true)]
     [InlineData("987(654)013249", false)]
@@ -261,9 +262,74 @@ public class RegexTests
     [InlineData("(374374)1234", false)]
     [InlineData("(374)12345123123123213678901", false)]
     [InlineData("(374)123", false)]
-    
     public void IsPandaFormattedPhoneNumberTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsPandaFormattedPhoneNumber(value));
+    }
+
+    [Theory]
+    [InlineData("00000000-0000-0000-0000-000000000000", true)]
+    [InlineData("C56A4180-65AA-42EC-A945-5FD21DEC0538", true)]
+    [InlineData("not-a-guid", false)]
+    [InlineData("", false)]
+    public void IsTestIsGuid(string input, bool expected)
+    {
+        var result = PandaValidator.IsGuid(input);
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData("192.168.1.1", true)]
+    [InlineData("255.255.255.255", true)]
+    [InlineData("256.256.256.256", false)]
+    [InlineData("::1", false)]
+    [InlineData("not-an-ip", false)]
+    [InlineData("", false)]
+    public void IsTestIsIPv4(string input, bool expected)
+    {
+        var result = PandaValidator.IsIPv4(input);
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData("::1", true)]
+    [InlineData("2001:0db8:85a3:0000:0000:8a2e:0370:7334", true)]
+    [InlineData("192.168.1.1", false)]
+    [InlineData("not-an-ip", false)]
+    [InlineData("", false)]
+    public void IsTestIsIPv6(string input, bool expected)
+    {
+        var result = PandaValidator.IsIPv6(input);
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData("192.168.1.1", true)]
+    [InlineData("::1", true)]
+    [InlineData("256.256.256.256", false)]
+    [InlineData("not-an-ip", false)]
+    [InlineData("", false)]
+    public void IsTestIsIpAddress(string input, bool expected)
+    {
+        var result = PandaValidator.IsIpAddress(input);
+        Assert.Equal(expected, result);
+    }
+    
+    [Theory]
+    [InlineData("{\"name\":\"John\", \"age\":30}", true)] // Valid JSON object
+    [InlineData("[{\"name\":\"John\"}, {\"name\":\"Jane\"}]", true)] // Valid JSON array
+    [InlineData("\"Just a string\"", true)] // Valid JSON string
+    [InlineData("12345", true)] // Valid JSON number
+    [InlineData("true", true)] // Valid JSON boolean
+    [InlineData("null", true)] // Valid JSON null
+    [InlineData("{name:\"John\", age:30}", false)] // Missing quotes around property names
+    [InlineData("[{\"name\":\"John\", \"age\":30}", false)] // Missing closing bracket
+    [InlineData("{\"name\":\"John\", \"age\":30", false)] // Missing closing brace
+    [InlineData("Just a string", false)] // Not a JSON string (missing quotes)
+    [InlineData("", false)] // Empty string
+    public void IsTestIsJson(string input, bool expected)
+    {
+        var result = PandaValidator.IsJson(input);
+        Assert.Equal(expected, result);
     }
 }
