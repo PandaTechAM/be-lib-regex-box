@@ -1,6 +1,6 @@
 using RegexBox;
 
-namespace RegexBoxTests;
+namespace RegexBox.Tests;
 
 public class Tests
 {
