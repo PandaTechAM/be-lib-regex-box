@@ -2,7 +2,19 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexBox", "src\RegexBox\RegexBox.csproj", "{54353AC9-A2A0-4DB1-B019-AC0B770D524A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexBoxTests", "src\RegexBoxTests\RegexBoxTests.csproj", "{D11E0003-8B29-4554-8A8A-5214E9285202}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexBox.Tests", "test\RegexBox.Tests\RegexBox.Tests.csproj", "{D11E0003-8B29-4554-8A8A-5214E9285202}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{94AF2521-F384-4E68-831C-7ADC965F41E6}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+		.gitignore = .gitignore
+		Readme.md = Readme.md
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BC3CEE8A-A8AB-4F47-BEEB-853282BFF09C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{93F10FC5-D17C-448A-8FC7-4F2B8526A20B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +30,9 @@ Global
 		{D11E0003-8B29-4554-8A8A-5214E9285202}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D11E0003-8B29-4554-8A8A-5214E9285202}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D11E0003-8B29-4554-8A8A-5214E9285202}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54353AC9-A2A0-4DB1-B019-AC0B770D524A} = {BC3CEE8A-A8AB-4F47-BEEB-853282BFF09C}
+		{D11E0003-8B29-4554-8A8A-5214E9285202} = {93F10FC5-D17C-448A-8FC7-4F2B8526A20B}
 	EndGlobalSection
 EndGlobal

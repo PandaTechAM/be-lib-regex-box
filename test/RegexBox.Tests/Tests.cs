@@ -1,6 +1,4 @@
-using RegexBox;
-
-namespace RegexBoxTests;
+namespace RegexBox.Tests;
 
 public class Tests
 {
@@ -90,25 +88,6 @@ public class Tests
     //     Assert.Equal(expected, isValid);
     // }
 
-    [Theory]
-    [InlineData("http://google.com", true)]
-    [InlineData("https://google.com", true)]
-    [InlineData("https://google.org", true)]
-    [InlineData("https://openai.com", true)]
-    [InlineData("http://example.travel", true)]
-    [InlineData("https://example.co.uk", true)]
-    [InlineData("google.com", false)]
-    [InlineData("https://", false)]
-    [InlineData("https://example.invalidTLD", false)]
-    [InlineData("http://*.google.com", false)]
-    [InlineData("http://sub.google.com", true)]
-    [InlineData("https://*.openai.com", false)]
-    [InlineData("*.google.com", false)]
-    [InlineData("http://openai.com/vazgen?a=6456", true)]
-    public void IsUrlTest(string value, bool expectedResult)
-    {
-        Assert.Equal(expectedResult, PandaValidator.IsUri(value, false, true));
-    }
 
     [Theory]
     [InlineData("http://google.com", true)]
@@ -119,14 +98,15 @@ public class Tests
     [InlineData("https://example.co.uk", true)]
     [InlineData("google.com", false)]
     [InlineData("https://", false)]
-    [InlineData("http://*.google.com", true)]
+    [InlineData("https://example.invalidTLD", true)]
+    [InlineData("http://*.google.com", false)]
     [InlineData("http://sub.google.com", true)]
-    [InlineData("https://*.openai.com", true)]
+    [InlineData("https://*.openai.com", false)]
     [InlineData("*.google.com", false)]
-    [InlineData("https://openai.com/vazgen?a=6456", true)]
-    public void IsUrlOrWildcardTest(string value, bool expectedResult)
+    [InlineData("http://openai.com/vazgen?a=6456", true)]
+    public void IsUrlTest(string value, bool expectedResult)
     {
-        Assert.Equal(expectedResult, PandaValidator.IsUri(value, true, true));
+        Assert.Equal(expectedResult, PandaValidator.IsUri(value));
     }
 
     [Theory]
@@ -142,32 +122,11 @@ public class Tests
     [InlineData("https://*.openai.com", false)]
     [InlineData("*.google.com", false)]
     [InlineData("http://google.com", false)]
-    [InlineData("ftp://google.com", false)]
+    [InlineData("ftp://google.com", true)]
     [InlineData("https://openai.com/vazgen?a=6456", true)]
     public void IsSecureUrlTest(string value, bool expectedResult)
     {
-        Assert.Equal(expectedResult, PandaValidator.IsUri(value, false, false));
-    }
-
-    [Theory]
-    [InlineData("https://google.com", true)]
-    [InlineData("https://google.org", true)]
-    [InlineData("https://openai.com/vazZadqj?", true)]
-    [InlineData("http://example.travel", false)]
-    [InlineData("https://example.co.uk", true)]
-    [InlineData("google.com", false)]
-    [InlineData("https://", false)]
-    [InlineData("http://*.google.com", false)]
-    [InlineData("http://sub.google.com", false)]
-    [InlineData("https://*.openai.com", true)]
-    [InlineData("*.google.com", false)]
-    [InlineData("http://google.com", false)]
-    [InlineData("ftp://google.com", false)]
-    [InlineData("https://*.google.com", true)]
-    [InlineData("https://*.pandatech.it",true)]
-    public void IsSecureUrlOrSecureWildcardTest(string value, bool expectedResult)
-    {
-        Assert.Equal(expectedResult, PandaValidator.IsUri(value, true, false));
+        Assert.Equal(expectedResult, PandaValidator.IsUri(value, false));
     }
 
 
@@ -314,7 +273,7 @@ public class Tests
         var result = PandaValidator.IsIpAddress(input);
         Assert.Equal(expected, result);
     }
-    
+
     [Theory]
     [InlineData("{\"name\":\"John\", \"age\":30}", true)] // Valid JSON object
     [InlineData("[{\"name\":\"John\"}, {\"name\":\"Jane\"}]", true)] // Valid JSON array

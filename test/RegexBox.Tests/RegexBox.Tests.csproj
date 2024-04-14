@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RegexBox\RegexBox.csproj" />
+      <ProjectReference Include="..\..\src\RegexBox\RegexBox.csproj" />
     </ItemGroup>
 
    

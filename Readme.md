@@ -13,7 +13,7 @@ methods:
 using Pandatech.RegexBox;
 
 // URI validation
-bool isValidUri = PandaValidator.IsUri("http://example.com", allowWildcards: false, allowNonSecure: true);
+bool isValidUri = PandaValidator.IsUri("http://example.com", allowNonSecure: false);
 
 // US Social Security Number validation
 bool isValidSsnUs = PandaValidator.IsUsSocialSecurityNumber("123-45-6789");
