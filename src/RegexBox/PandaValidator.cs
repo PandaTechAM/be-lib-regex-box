@@ -74,12 +74,6 @@ public static class PandaValidator
         return true;
     }
 
-
-    // public static bool IsCreditCardNumber(string number)
-    // {
-    //     return CreditCardNumber.IsMatch(number);
-    // }
-
     public static bool IsUsSocialSecurityNumber(string number)
     {
         return UsSocialSecurityNumber.IsMatch(number);

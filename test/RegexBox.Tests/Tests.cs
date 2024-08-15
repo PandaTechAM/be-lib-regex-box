@@ -104,6 +104,7 @@ public class Tests
     [InlineData("https://*.openai.com", false)]
     [InlineData("*.google.com", false)]
     [InlineData("http://openai.com/vazgen?a=6456", true)]
+    [InlineData("https://react.pandatech.it:8000/fallback?fallbackType=fdasdf", true)]
     public void IsUrlTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsUri(value));
@@ -124,6 +125,8 @@ public class Tests
     [InlineData("http://google.com", false)]
     [InlineData("ftp://google.com", true)]
     [InlineData("https://openai.com/vazgen?a=6456", true)]
+    [InlineData("https://react.pandatech.it:8000/fallback?fallbackType=fdasdf", true)]
+
     public void IsSecureUrlTest(string value, bool expectedResult)
     {
         Assert.Equal(expectedResult, PandaValidator.IsUri(value, false));
