@@ -147,6 +147,10 @@ public class Tests
     [InlineData("Տ123/456476", false)]
     [InlineData("S12/545647", false)]
     [InlineData("S023A95647", true)]
+    [InlineData("S023A#5647", false)]
+    [InlineData("S023A95647#", false)]
+    [InlineData("S023A956.7", false)]
+
     [InlineData("Տ023A95647", false)]
     [InlineData("231654A64", false)]
     [InlineData("Տ0239A5647", false)]

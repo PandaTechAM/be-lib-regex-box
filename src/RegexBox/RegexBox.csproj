@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Authors>Pandatech</Authors>
         <PackageIcon>pandatech.png</PackageIcon>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Copyright>MIT</Copyright>
-        <Version>2.0.1</Version>
+        <Version>3.0.0</Version>
         <PackageId>Pandatech.RegexBox</PackageId>
         <Title>Pandatech.RegexBox</Title>
         <PackageTags>Pandatech, library, regex, validation</PackageTags>
         <Description>PandaTech.RegexBox is a .NET library simplifying common Regex.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-regex-box</RepositoryUrl>
-        <PackageReleaseNotes>URL validation wildcard has been removed as regex is not needed anymore</PackageReleaseNotes>
+        <PackageReleaseNotes>Upgraded to .net 9</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
