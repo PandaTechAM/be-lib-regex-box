@@ -8,13 +8,13 @@
         <PackageIcon>pandatech.png</PackageIcon>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <Copyright>MIT</Copyright>
-        <Version>3.0.0</Version>
+        <Version>3.0.1</Version>
         <PackageId>Pandatech.RegexBox</PackageId>
         <Title>Pandatech.RegexBox</Title>
         <PackageTags>Pandatech, library, regex, validation</PackageTags>
         <Description>PandaTech.RegexBox is a .NET library simplifying common Regex.</Description>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-regex-box</RepositoryUrl>
-        <PackageReleaseNotes>Upgraded to .net 9</PackageReleaseNotes>
+        <PackageReleaseNotes>nuget updates</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
